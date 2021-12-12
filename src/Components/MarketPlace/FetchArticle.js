@@ -72,7 +72,7 @@ function FetchArticle() {
                                         <br/>
                                         <p className="mx-auto pl-2 text-black  font-medium leading-relaxed ">{data.Description}</p></div>
                                     <div className='flex justify-end'>
-                                        <p className="  pt-4 text-black  font-medium leading-relaxed "> Token Owner - {data.codeBy}</p>
+                                        <p className="  pt-4 text-black  font-bold leading-relaxed "> Token Owner - {data.codeBy}</p>
                                     </div>
 
                                 </div>
