@@ -11,6 +11,8 @@ function App() {
         <NavbarCustom />
         <Switch>
           <Route exact path="/Dashboard" component={Dashboard} />
+          <Route exact path="/MarketPlace" component={MarketPlace} />
+          <Route exact path="/MarketPlace/:id" component={FetchArticle} />
         </Switch>
       </Router>
     </div>
