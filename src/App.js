@@ -1,8 +1,10 @@
-import './App.css'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Login from './Components/Login/Login'
 import NavbarCustom from './Components/Navbar/NavbarCustom'
 import Dashboard from './Components/Dashboard/Dashboard'
+import MarketPlace from './Components/MarketPlace/MarketPlace'
+import FetchArticle from './Components/MarketPlace/FetchArticle'
+
 function App() {
   return (
     <div className="App">

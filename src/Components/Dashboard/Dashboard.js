@@ -7,11 +7,13 @@ const Dashboard = () => {
   const [state, setState] = useState({})
   const [loading, setLoading] = useState(false)
 
+  const fileRef = React.createRef()
+
   function handleChange(event, type = null) {
     if (type === 'image') {
       setState({
         ...state,
-        image: event.target.files[0],
+        image: fileRef.current.files[0],
       })
     } else if (type === 'check') {
       setState({
@@ -30,43 +32,27 @@ const Dashboard = () => {
   async function handleSubmit(e) {
     e.preventDefault()
     const image = state.image
-    console.log(image)
 
-    var myHeaders = new Headers()
-    myHeaders.append(
-      'Authorization',
-      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEIyMkREQzE2OGJGNjFhMzMzRkIxNjE2RTQ2NjRkMDk1OTY5OTE3NzciLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTMwNDQ3OTYwMywibmFtZSI6ImdldEh1YiJ9.BbEvD-QxC9IqmFJx-Ve9Pt9VpyVLFotfQtR2n7yn0lQ'
-    )
+    // console.log(image)
+    // setLoading(true)
 
-    var formdata = new FormData()
-    formdata.append('test.jpg', image, image)
-
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: formdata,
-      redirect: 'follow',
-    }
-
-    fetch('https://api.nft.storage/upload', requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.log('error', error))
-
-    // axios
-    //   .post(
-    //     'https://api.nft.storage/upload',
-    //     { image },
-    //     {
-    //       headers: {
-    //         'Content-Type': 'aplication/json',
-    //         Authorization:
-    //           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEIyMkREQzE2OGJGNjFhMzMzRkIxNjE2RTQ2NjRkMDk1OTY5OTE3NzciLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTMwNDQ3OTYwMywibmFtZSI6ImdldEh1YiJ9.BbEvD-QxC9IqmFJx-Ve9Pt9VpyVLFotfQtR2n7yn0lQ',
-    //       },
-    //     }
-    //   )
-    //   .then((res) => console.log('res', res))
-    //   .catch((err) => console.error(err))
+    axios
+      .post(
+        'https://api.nft.storage/upload',
+        { image },
+        {
+          headers: {
+            'Content-Type': 'aplication/json',
+            Authorization:
+              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEIyMkREQzE2OGJGNjFhMzMzRkIxNjE2RTQ2NjRkMDk1OTY5OTE3NzciLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTMwNDQ3OTYwMywibmFtZSI6ImdldEh1YiJ9.BbEvD-QxC9IqmFJx-Ve9Pt9VpyVLFotfQtR2n7yn0lQ',
+          },
+        }
+      )
+      .then((res) => {
+        console.log('res', res)
+        // setLoading(false)
+      })
+      .catch((err) => console.error(err))
   }
 
   return (
@@ -139,6 +125,7 @@ const Dashboard = () => {
                                 <input
                                   type="file"
                                   className="hidden"
+                                  ref={fileRef}
                                   onChange={(e) => handleChange(e, 'image')}
                                 />
                               </label>
