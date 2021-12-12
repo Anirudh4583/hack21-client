@@ -89,7 +89,7 @@ function FetchArticle() {
                                             <p className="text-lg font-normal tracking-tight text-gray-600"> </p>
                                         </div>
                                     </div>
-                                    <span  className="w-full font-xl inline-block px-4 py-2  cursor-pointer mt-4 text-black transition duration-500 ease-in-out transform bg-blue-500 border-blue-500 rounded-md focus:shadow-outline focus:outline-none hover:bg-blue-700" onClick={()=>{''}}>  {data.openSource?( 'Crowd Fund' ):(`Buy @ ${data.Cost}` )}</span>
+                                    <span  className="w-full font-xl inline-block px-4 py-2  cursor-pointer mt-4 text-black transition duration-500 ease-in-out transform bg-blue-500 border-blue-500 rounded-md focus:shadow-outline focus:outline-none hover:bg-blue-700" onClick={()=>{''}}>  {data.openSource?( `Crowd Fund [Current Funding Count ${data.fundRaised}]` ):(`Buy @ ${data.Cost}` )}</span>
                                 </div>
                             </div>
                         </div>
