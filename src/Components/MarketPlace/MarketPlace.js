@@ -3,114 +3,18 @@ import React, {useState} from "react";
 import photo1 from "../Images/404.png"
 import photo2 from '../Images/alerte.png'
 import photo3 from '../Images/login.png'
+import {database} from "./Data";
+import {useHistory} from "react-router-dom";
 
 function MarketPlace() {
 
+    const history = useHistory()
 
-    var database=[
-
-
-        {
-            photo:{photo1},
-            Title:'Error Page',
-            Filter:'Tailwind',
-            Description:'An Tailwind component for 404 page.',
-            codeBy:'Lavesh Panghal',
-            openSource:false,
-            Cost:'0.019 ETH',
-            tradable:true,
-
-        },
-        {
-            photo:{photo2},
-            Title:'Remove Card',
-            Filter:'Tailwind',
-            Description:'A Simple Remove Card in React.',
-            codeBy:'Lavesh Panghal',
-            openSource:true,
-            Cost:'0',
-            fundRaised: '0.029 ETH',
-            tradable:false,
-
-        },
-        {
-            photo:{photo3},
-            Title:'Form Layout',
-            Filter:'Tailwind',
-            Description:'A Form Layout Design.',
-            codeBy:'Lavesh Panghal',
-            openSource:false,
-            Cost:'0.059 ETH',
-            fundRaised: '0rs',
-            tradable:true,
-
-        },
-        {
-            photo:{photo3},
-            Title:'Form Layout',
-            Filter:'Tailwind',
-            Description:'A Form Layout Design.',
-            codeBy:'Lavesh Panghal',
-            openSource:true,
-            Cost:'0.022 ETH',
-            fundRaised: '0rs',
-            tradable:false,
-
-        },
-        {
-            photo:{photo3},
-            Title:'Form Layout',
-            Filter:'Tailwind',
-            Description:'A Form Layout Design.',
-            codeBy:'Lavesh Panghal',
-            openSource:false,
-            Cost:'0.051 ETH',
-            fundRaised: '0rs',
-            tradable:true,
-
-        },
-        {
-            photo:{photo3},
-            Title:'Form Layout',
-            Filter:'Tailwind',
-            Description:'A Form Layout Design.',
-            codeBy:'Lavesh Panghal',
-            openSource:false,
-            Cost:'0.059 ETH',
-            fundRaised: '0rs',
-            tradable:true,
-
-        },
-        {
-            photo:{photo3},
-            Title:'Form Layout',
-            Filter:'Tailwind',
-            Description:'A Form Layout Design.',
-            codeBy:'Lavesh Panghal',
-            openSource:true,
-            Cost:'0 ETH',
-            fundRaised: '0 ETH',
-            tradable:false,
-
-        },
+const handelMarketClick = (value)=>{
 
 
-
-
-
-
-
-    ]
-
-
-
-
-
-
-
-
-
-
+        history.push(`/MarketPlace/${value.IpfsDest}`)
+}
 
 
     return (
@@ -150,8 +54,8 @@ function MarketPlace() {
 
 
                             <div className="overflow-hidden shadow-lg rounded-lg h-90 w-60 md:w-80 cursor-pointer m-auto" key={index}>
-                                <a href="#" className="w-full block h-full">
-                                    <img alt="blog photo" src={photo1} className="max-h-40 w-full object-cover"/>
+                                <a onClick={()=>{handelMarketClick(value)}} className="w-full block h-full">
+                                    <img alt="blog photo" src={value.photo} className="max-h-40 w-full object-cover"/>
 
 
                                     <div className="bg-white dark:bg-gray-800 w-full p-4">
@@ -173,27 +77,12 @@ function MarketPlace() {
                                         </p>
                                     </div>
 
-
-
-
-
-
                                 </a>
                             </div>
 
 
                         )
-
-
-
                     })}
-
-
-
-
-
-
-
 
                 </div>
             </div>
