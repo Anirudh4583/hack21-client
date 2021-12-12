@@ -29,23 +29,44 @@ const Dashboard = () => {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    const image = URL.createObjectURL(state.image)
+    const image = state.image
     console.log(image)
 
-    axios
-      .post(
-        'https://api.nft.storage/upload',
-        { image },
-        {
-          headers: {
-            'Content-Type': 'aplication/json',
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEIyMkREQzE2OGJGNjFhMzMzRkIxNjE2RTQ2NjRkMDk1OTY5OTE3NzciLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTMwNDQ3OTYwMywibmFtZSI6ImdldEh1YiJ9.BbEvD-QxC9IqmFJx-Ve9Pt9VpyVLFotfQtR2n7yn0lQ',
-          },
-        }
-      )
-      .then((res) => console.log('res', res))
-      .catch((err) => console.error(err))
+    var myHeaders = new Headers()
+    myHeaders.append(
+      'Authorization',
+      'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEIyMkREQzE2OGJGNjFhMzMzRkIxNjE2RTQ2NjRkMDk1OTY5OTE3NzciLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTMwNDQ3OTYwMywibmFtZSI6ImdldEh1YiJ9.BbEvD-QxC9IqmFJx-Ve9Pt9VpyVLFotfQtR2n7yn0lQ'
+    )
+
+    var formdata = new FormData()
+    formdata.append('test.jpg', image, image)
+
+    var requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: formdata,
+      redirect: 'follow',
+    }
+
+    fetch('https://api.nft.storage/upload', requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log('error', error))
+
+    // axios
+    //   .post(
+    //     'https://api.nft.storage/upload',
+    //     { image },
+    //     {
+    //       headers: {
+    //         'Content-Type': 'aplication/json',
+    //         Authorization:
+    //           'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEIyMkREQzE2OGJGNjFhMzMzRkIxNjE2RTQ2NjRkMDk1OTY5OTE3NzciLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTMwNDQ3OTYwMywibmFtZSI6ImdldEh1YiJ9.BbEvD-QxC9IqmFJx-Ve9Pt9VpyVLFotfQtR2n7yn0lQ',
+    //       },
+    //     }
+    //   )
+    //   .then((res) => console.log('res', res))
+    //   .catch((err) => console.error(err))
   }
 
   return (
@@ -96,7 +117,7 @@ const Dashboard = () => {
                         <div className="form">
                           <div className="md:space-y-2 mb-3">
                             <label className="text-xs font-semibold text-gray-600 py-2">
-                              Image
+                              Add File
                               <abbr className="hidden" title="required">
                                 *
                               </abbr>
