@@ -56,7 +56,7 @@ function FetchArticle() {
                         {console.log(data.Title)}
                         <div className='flex flex-row justify-around'>
                             <h1 className=" mb-6 text-2xl pt-4 text-left!important font-semibold text-black  lg:text-3xl">{data.Title}</h1>
-                            {data.openSource?(  <h1 className="mb-6 text-2xl pt-4 text-left!important font-semibold text-green-400  lg:text-3xl"> Open Source </h1>):(  <h1 className=" mb-6 text-2xl pt-4 text-left!important font-semibold text-indigo-600  lg:text-3xl"> Tradable </h1>)}
+                          {data.openSource?(  <h1 className="mb-6 text-2xl pt-4 text-left!important font-semibold text-green-400  lg:text-3xl">  Open Source </h1>):(  <h1 className=" mb-6 text-2xl pt-4 text-left!important font-semibold text-indigo-600  lg:text-3xl"> Tradable </h1>)}
 
                         </div>
 
@@ -68,9 +68,13 @@ function FetchArticle() {
                                     <br/>
 
                                     <div className='bg-back rounded-3xl  '>
-                                        <h2 className="mx-auto pl-2 text-black mt-4 mb-4 text-xl font-semibold text-black">Project Description:</h2>
+                                        <h2 className="mx-auto pl-2 text-black mt-4 mb-4 text-xl font-semibold text-black"> Description:</h2>
                                         <br/>
                                         <p className="mx-auto pl-2 text-black  font-medium leading-relaxed ">{data.Description}</p></div>
+                                    <div className='flex justify-end'>
+                                        <p className="  pt-4 text-black  font-medium leading-relaxed "> Token Owner - {data.codeBy}</p>
+                                    </div>
+
                                 </div>
                                 <br/>
 
