@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { Box, CircularProgress, Modal } from '@mui/material'
 import axios from 'axios'
+import { useEthers } from '@usedapp/core'
 
 const Dashboard = () => {
   const [open, setOpen] = useState(false)
   const [state, setState] = useState({})
   const [loading, setLoading] = useState(false)
+
+  const { account } = useEthers()
 
   const fileRef = React.createRef()
 
@@ -59,6 +62,18 @@ const Dashboard = () => {
       .then((res) => {
         console.log('res', res)
         // setLoading(false)
+
+        axios
+          .post('http://localhost:3000/code/save', {
+            ...state,
+            ownerName: 'gethub',
+            tradable: !!state.tradable,
+            openSource: !state.tradable,
+            ownerAddress: account,
+            ipfsDest: res.data.value.cid,
+          })
+          .then((res2) => {})
+          .catch((err) => console.error(err))
       })
       .catch((err) => console.error(err))
   }
