@@ -31,23 +31,31 @@ const Dashboard = () => {
 
   async function handleSubmit(e) {
     e.preventDefault()
-    const image = state.image
 
     // console.log(image)
     // setLoading(true)
 
+    const fd = new FormData()
+    fd.append('file', state.image, state.image.name)
+
+    console.log('file', state.image)
+    console.log('fd', fd)
+
+    // const reader = new FileReader()
+
+    // var rtxt = reader.readAsArrayBuffer(image)
+
+    // const rtxt = URL.createObjectURL(image)
+    // console.log(rtxt)
+
     axios
-      .post(
-        'https://api.nft.storage/upload',
-        { image },
-        {
-          headers: {
-            'Content-Type': 'aplication/json',
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEIyMkREQzE2OGJGNjFhMzMzRkIxNjE2RTQ2NjRkMDk1OTY5OTE3NzciLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTMwNDQ3OTYwMywibmFtZSI6ImdldEh1YiJ9.BbEvD-QxC9IqmFJx-Ve9Pt9VpyVLFotfQtR2n7yn0lQ',
-          },
-        }
-      )
+      .post('https://api.nft.storage/upload', fd, {
+        headers: {
+          'Content-type': 'multipart/form-data',
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweEIyMkREQzE2OGJGNjFhMzMzRkIxNjE2RTQ2NjRkMDk1OTY5OTE3NzciLCJpc3MiOiJuZnQtc3RvcmFnZSIsImlhdCI6MTYzOTMwNDQ3OTYwMywibmFtZSI6ImdldEh1YiJ9.BbEvD-QxC9IqmFJx-Ve9Pt9VpyVLFotfQtR2n7yn0lQ',
+        },
+      })
       .then((res) => {
         console.log('res', res)
         // setLoading(false)
